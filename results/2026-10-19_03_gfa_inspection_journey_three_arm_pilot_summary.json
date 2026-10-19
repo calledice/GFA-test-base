@@ -1,0 +1,77 @@
+{
+  "adjudicationStatus": "unadjudicated",
+  "caseClasses": {
+    "in_trace": 0,
+    "external_only": 0,
+    "trace_missing": 0,
+    "unresolved": 0
+  },
+  "unclassifiedCases": 1,
+  "unadjudicatedClaims": 3,
+  "budgets": {
+    "stepBudget": 30,
+    "timeBudgetMs": 600000
+  },
+  "byArm": {
+    "ranked": {
+      "cases": 1,
+      "actionableCases": 0,
+      "chainCases": 0,
+      "actionableReached": null,
+      "chainReached": null,
+      "actionableRestrictedSteps": 0,
+      "chainRestrictedSteps": 0,
+      "actionableRestrictedMs": 0,
+      "chainRestrictedMs": 0,
+      "costTokens": 25856,
+      "costElapsedMs": 20900,
+      "openedSteps": 4,
+      "transmittedImages": 4,
+      "unadjudicated": 1,
+      "meanActionableRestrictedSteps": null,
+      "meanChainRestrictedSteps": null,
+      "meanActionableRestrictedMs": null,
+      "meanChainRestrictedMs": null
+    },
+    "chronological": {
+      "cases": 1,
+      "actionableCases": 0,
+      "chainCases": 0,
+      "actionableReached": null,
+      "chainReached": null,
+      "actionableRestrictedSteps": 0,
+      "chainRestrictedSteps": 0,
+      "actionableRestrictedMs": 0,
+      "chainRestrictedMs": 0,
+      "costTokens": 24920,
+      "costElapsedMs": 14898,
+      "openedSteps": 4,
+      "transmittedImages": 4,
+      "unadjudicated": 1,
+      "meanActionableRestrictedSteps": null,
+      "meanChainRestrictedSteps": null,
+      "meanActionableRestrictedMs": null,
+      "meanChainRestrictedMs": null
+    },
+    "self_directed": {
+      "cases": 1,
+      "actionableCases": 0,
+      "chainCases": 0,
+      "actionableReached": null,
+      "chainReached": null,
+      "actionableRestrictedSteps": 0,
+      "chainRestrictedSteps": 0,
+      "actionableRestrictedMs": 0,
+      "chainRestrictedMs": 0,
+      "costTokens": 25731,
+      "costElapsedMs": 18779,
+      "openedSteps": 4,
+      "transmittedImages": 4,
+      "unadjudicated": 1,
+      "meanActionableRestrictedSteps": null,
+      "meanChainRestrictedSteps": null,
+      "meanActionableRestrictedMs": null,
+      "meanChainRestrictedMs": null
+    }
+  }
+}
