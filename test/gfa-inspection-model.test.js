@@ -13,7 +13,9 @@ test('model adapter sends only the latest verified image and reads real usage', 
             field: null, chunkIndex: null, memo: 'x', checkpoint: {
               actionable: null, chain: null } }) } ] }] }) }
     } })
-  const result = await investigator({ caseId: 'c', task: 'task', mode: 'ranked',
+  const result = await investigator({ caseId: 'c', task: 'task',
+    finalUnmetCondition: 'the saved artifact lacks the requested chart',
+    mode: 'ranked',
     index: [{ step: 2 }], recommendations: [2], openedSteps: [2],
     visibleRefs: ['2:image:a'], memo: '', callIndex: 1,
     lastEvidence: { kind: 'step', step: 2, fields: [], images: [{
@@ -24,4 +26,6 @@ test('model adapter sends only the latest verified image and reads real usage', 
   assert.equal(request.input[0].content.filter(x => x.type === 'input_image').length, 1)
   assert.equal(request.input[0].content[0].text.includes('data:image'), false)
   assert.equal(JSON.parse(request.input[0].content[0].text).mode, undefined)
+  assert.equal(JSON.parse(request.input[0].content[0].text).finalUnmetCondition,
+    'the saved artifact lacks the requested chart')
 })

@@ -26,6 +26,8 @@ node scripts/run-gfa-inspection-journey.mjs --manifest results/raw/candidates.js
 
 For a real model run, set `OPENAI_API_KEY` in the environment and add `--api-url "$RESPONSES_API_URL" --model "$MODEL"`. The three arms are `ranked`, `chronological`, and `self_directed`; each receives the same task card, index, and step evidence. The ranked arm only gets recommended step numbers. `open_step` reveals all short fields and verified images for that step; long fields are available through `read_chunk`. The runner logs actual openings and checkpoints.
 
+For the redesigned study, add `--require-final-condition` and place a short, independently verified, neutral `finalUnmetCondition` string in each selected manifest case. The runner checks this before fetching the record and gives the same statement to every arm. A missing condition stops the run rather than silently substituting the official failure flag.
+
 Evaluate the output with an **independently produced** JSONL adjudication file:
 
 ```sh
@@ -33,6 +35,8 @@ node scripts/evaluate-gfa-inspection-journey.mjs --results results/raw/run.json 
 ```
 
 Without adjudication, the evaluator reports `unadjudicated`. A case record must specify `kind: "case"`, `caseId`, `class` (`in_trace`, `external_only`, `trace_missing`, or `unresolved`) and A/C eligibility. A checkpoint record specifies `kind: "checkpoint"`, `caseId`, `mode`, `checkpointIndex`, `actionableValid`, and `chainValid`. Human reviewers must see the evidence available *at that checkpoint*, not later evidence or the arm name.
+
+The redesigned FHC/HGR/CCC evaluator uses an expanded label format with canonical hypothesis IDs and reference-graph edges. See [adjudication format](adjudication-format.md) and [protocol](investigation-prioritization-protocol.md). It does not reinterpret old A/C labels as graph coverage.
 
 ## Scope of the published outputs
 

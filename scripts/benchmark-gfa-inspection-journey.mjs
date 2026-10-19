@@ -56,6 +56,7 @@ export async function runJourney(item, mode, investigator, evidenceStore,
   for (let callIndex = 0; callIndex < limits.maxCalls; callIndex++) {
     const recommendations = evidenceStore.recommend(mode, opened)
     const result = await investigator({ caseId: item.id, task: item.instruction,
+      finalUnmetCondition: item.finalUnmetCondition ?? null,
       mode, index, recommendations, openedSteps: [...openedSteps],
       visibleRefs: [...visibleRefs], memo, lastEvidence, actionError, callIndex })
     if (!result || !result.decision) throw new Error('invalid_investigator_result')

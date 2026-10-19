@@ -16,6 +16,7 @@ function parseArgs(argv) {
     const key = argv[i]
     if (!key.startsWith('--')) throw new Error('invalid_argument')
     if (key === '--dry-run') args.dryRun = true
+    else if (key === '--require-final-condition') args.requireFinalCondition = true
     else { args[key.slice(2)] = argv[++i]; if (args[key.slice(2)] == null)
       throw new Error(`missing_value_${key}`) }
   }
@@ -84,12 +85,18 @@ export async function runManifest(args, modelFactory = createModelInvestigator) 
   for (let offset = 0; offset < caseLimit; offset++) {
     const caseIndex = startIndex + offset
     const selected = manifest.cases[caseIndex]
+    if (args.requireFinalCondition
+      && (typeof selected.finalUnmetCondition !== 'string'
+        || !selected.finalUnmetCondition.trim()
+        || selected.finalUnmetCondition.length > 1000))
+      throw new Error('verified_final_unmet_condition_required')
     const url = new URL('/record', args.site)
     url.searchParams.set('id', selected.id)
     const response = await fetch(url, { signal: AbortSignal.timeout(30000) })
     if (!response.ok) throw new Error(`case_http_${response.status}`)
     const record = await response.json()
-    const item = prepareInspectionCase(record)
+    const item = { ...prepareInspectionCase(record),
+      finalUnmetCondition: selected.finalUnmetCondition ?? null }
     verifySelectedCase(record, item, selected, true)
     const caseResult = { id: item.id, sourceSha256: item.sourceSha256,
       atomicEventsSha256: item.atomicEventsSha256,

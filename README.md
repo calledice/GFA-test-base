@@ -6,11 +6,14 @@ This repository contains a standalone snapshot of the GFA inspection proxy exper
 
 - [Scoring rule and existing evidence](docs/proxy-v2.md)
 - [Replay and data contract](docs/reproduction.md)
+- [Investigation Prioritization protocol](docs/investigation-prioritization-protocol.md) and [adjudication format](docs/adjudication-format.md) on the `investigation-prioritization` branch
 - `scripts/`: retrospective scoring, multimodal and three-arm replays, incremental evidence disclosure, and evaluation
 - `test/`: synthetic unit and integration fixtures
 - `results/`: aggregate, unadjudicated pilot summaries
 
 The code was copied from the local `dsh-step-risk` research working tree on 2026-10-19. The `src/` modules are the exact local dependency chain needed to check that GFA events abstain under the native DSH rule; GFA's own ranking is in `scripts/benchmark-gfa-proxy.mjs`. The source working tree had uncommitted changes, so this Git commit is the immutable reference for this snapshot.
+
+The `investigation-prioritization` branch builds on that snapshot. It adds a prospective protocol and an adjudication-only evaluator for First-Hypothesis-Cost (FHC), Hypothesis-Generation-Rate (HGR), Causal-Chain-Coverage (CCC), and complete-chain cost. It does not change the frozen proxy score or claim a measured benefit.
 
 ## Run checks
 

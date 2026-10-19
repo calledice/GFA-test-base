@@ -33,6 +33,7 @@ function contentFor(state) {
     : piece : null
   const content = [{ type: 'input_text', text: JSON.stringify({
     task: state.task, caseStatus: 'official run failed; failure mechanism is hidden',
+    finalUnmetCondition: state.finalUnmetCondition ?? null,
     index: state.index,
     recommendations: state.recommendations,
     openedSteps: state.openedSteps, visibleRefs: state.visibleRefs,

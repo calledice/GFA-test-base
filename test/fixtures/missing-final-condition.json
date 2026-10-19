@@ -1,0 +1,8 @@
+{
+  "site": "https://example.test/",
+  "cases": [
+    {
+      "id": "synthetic-case"
+    }
+  ]
+}
